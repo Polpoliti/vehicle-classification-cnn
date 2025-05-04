@@ -38,8 +38,8 @@ To make the most of the data and avoid overfitting, I combined several technique
 - **MixUp augmentation** to help the model generalize better
 - **WeightedRandomSampler** to address class imbalance
 - **Weighted CrossEntropyLoss** with **label smoothing**
-- Strong data augmentations: horizontal flips, brightness, perspective transforms, etc.
-- **CosineAnnealingLR** as the learning rate scheduler
+- **Strong data augmentations:**  including rotation, horizontal flips, brightness, random erasing, etc.
+- **OneCycleLR learning rate scheduling with cosine annealing** for smoother convergence
 - **EarlyStopping** to capture the best checkpoint before overfitting
 
 > I originally tried simple oversampling and class weights, but combining the sampler with label smoothing gave significantly smoother training dynamics.
