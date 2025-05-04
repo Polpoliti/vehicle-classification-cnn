@@ -1,0 +1,35 @@
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment folders
+env/
+venv/
+.venv/
+
+# Dataset files
+*.mat
+*.zip
+*.tar
+*.tgz
+*.h5
+*.pt
+*.pth
+*.pkl
+/data/
+
+# Logs and outputs
+logs/
+*.log
+*.out
+*.DS_Store
+
+# Colab and IDE configs
+.colab/
+.vscode/
+.idea/
