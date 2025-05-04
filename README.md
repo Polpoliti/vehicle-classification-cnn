@@ -1,7 +1,7 @@
 
 # 🚘 Fine-Grained Vehicle Classification from Scratch (196 Classes)
 
-Hi, and thanks for checking out this project!  
+Hi,
 As part of my personal deep learning journey, I wanted to challenge myself by solving a real-world, fine-grained image classification task — using **only a custom-built CNN from scratch**, without any pretrained weights or transfer learning.
 
 I used the [Stanford Cars Dataset](https://ai.stanford.edu/~jkrause/cars/car_dataset.html), which includes over 16,000 images across 196 car categories. Some of the differences between classes are incredibly subtle (like small changes in headlights or grilles), which makes this problem both technically challenging and interesting.
