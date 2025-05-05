@@ -22,13 +22,15 @@ I intentionally avoided using transfer learning because I wanted to fully unders
 ## 🏗️ What I Built
 
 ### Model Architecture
-After testing a few different approaches, I landed on a custom **ResNet-inspired CNN** architecture that includes:
-- Residual blocks with skip connections
-- SE (Squeeze-and-Excitation) blocks for channel-wise attention
-- BatchNorm1d after SE blocks to stabilize learning
-- Dropout for regularization
 
-> Early experiments with plain CNNs didn’t scale well to 196 classes. The SE blocks and residual connections made a clear improvement in both convergence and accuracy.
+After several iterations, I developed a custom **ResNet-inspired CNN** architecture featuring:
+- Residual blocks with skip connections
+- Batch Normalization and ReLU activations
+- Dropout before the final classification layer
+- Global average pooling followed by a fully connected layer
+
+> Simpler CNN architectures struggled to scale to 196 classes. Residual connections significantly improved convergence and generalization.
+
 
 ---
 
@@ -37,7 +39,7 @@ After testing a few different approaches, I landed on a custom **ResNet-inspired
 To make the most of the data and avoid overfitting, I combined several techniques:
 - **MixUp augmentation** to help the model generalize better
 - **WeightedRandomSampler** to address class imbalance
-- **Weighted CrossEntropyLoss** with **label smoothing**
+- **CrossEntropyLoss** with **label smoothing**
 - **Strong data augmentations:**  including rotation, horizontal flips, brightness, random erasing, etc.
 - **OneCycleLR learning rate scheduling with cosine annealing** for smoother convergence
 - **EarlyStopping** to capture the best checkpoint before overfitting
@@ -53,7 +55,7 @@ All results are from a custom CNN trained completely from scratch (no pretrained
 - ✅ **Best Validation Accuracy**: 70.9%
 - 📉 **Best Validation Loss**: 1.5696
 - 📊 **Train Accuracy at Best Epoch**: ~70.8%
-- 🏁 **Epoch Reached**: 69 (with EarlyStopping)
+- 🏁 **Epoch Reached**: **69** (early stopping triggered at epoch 69, best model saved at epoch 64)
 
 Given the difficulty of the task (fine-grained, high-class-count, no transfer learning), I'm really happy with these results — and I see this as a strong baseline to build on further.
 
@@ -74,20 +76,17 @@ To reproduce the results or train the model yourself, follow these steps:
 
 Download and extract the dataset so the folder structure looks like this:
 
-```
-/dataset_cars
-├── cars196-devkit/
-├── cars196-test-annotations.mat
+
+
+/Stanford_Cars_dataset-main
 ├── train/
 ├── test/
-├── label.labels.txt
-```
 
-- The `train/` and `test/` folders should contain the raw car images.
-- Annotation and metadata are stored in `.mat` and `.txt` files and will be loaded by the notebook.
-- No need for TFRecord — the dataset is loaded directly from these folders and files.
 
----
+- The `train/` and `test/` folders should contain the raw car images, organized into subfolders by class (as expected by PyTorch's `ImageFolder`).
+- You do **not** need annotation files like `.mat` or `label.labels.txt` — the model is trained directly from the image folder structure.
+- No need for TFRecord — data is loaded efficiently using PyTorch's built-in tools.
+
 
 ### 2. 🧬 Clone the Repository
 
@@ -118,7 +117,7 @@ Final - ComputerVision_E2E_CNN_Cars196.ipynb
 
 The notebook includes:
 - Data parsing from `.mat` and `.txt` files
-- Custom CNN architecture with residual and SE blocks
+- Custom CNN architecture with residual blocks (no pretrained weights)
 - Data augmentation, balancing, and training logic
 - Accuracy tracking and Grad-CAM visualizations
 
