@@ -116,10 +116,11 @@ Final - ComputerVision_E2E_CNN_Cars196.ipynb
 ```
 
 The notebook includes:
-- Data parsing from `.mat` and `.txt` files
+- Data loading using PyTorch's ImageFolder structure (no `.mat` or `.txt` files required)
 - Custom CNN architecture with residual blocks (no pretrained weights)
-- Data augmentation, balancing, and training logic
+- Data augmentation, class balancing, and training logic
 - Accuracy tracking and Grad-CAM visualizations
+
 
 ---
 
@@ -128,6 +129,21 @@ The notebook includes:
 - A GPU is highly recommended for training (e.g., Colab Pro, or local CUDA setup)
 - You can tweak hyperparameters directly in the notebook (batch size, LR, MixUp, etc.)
 - At the end, you’ll see visual Grad-CAM outputs to better understand model decisions
+
+---
+
+## 🧪 Experimentation and Challenges
+
+Throughout this project, I experimented with multiple training strategies and faced several real-world challenges:
+
+- **Simple CNN architectures** without residuals failed to converge well on 196 classes. Accuracy plateaued early, even with heavy data augmentation.
+- Adding **residual connections** significantly improved learning stability and enabled deeper architectures to train effectively.
+- I compared **oversampling**, **weighted loss**, and **WeightedRandomSampler** — the sampler approach combined with **label smoothing** produced the most consistent results.
+- Without **MixUp**, the model tended to overfit after ~20 epochs. Integrating MixUp with probability 0.5 helped improve generalization.
+- Initially, I used a constant learning rate, but switching to **OneCycleLR** with cosine annealing led to smoother convergence and better final performance.
+- I observed overfitting around epoch 60–65, which is why I integrated **EarlyStopping** to capture the best checkpoint before performance dropped.
+
+These iterations taught me how small architectural tweaks and the right combination of training techniques can lead to substantial improvements in a deep learning workflow — especially when working without transfer learning.
 
 ---
 
