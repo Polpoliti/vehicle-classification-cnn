@@ -48,23 +48,23 @@ To make the most of the data and avoid overfitting, I combined several technique
 
 ---
 
-## 📊 Final Results
+## 📊 Final Performance Results
 
 All results are from a custom CNN trained completely from scratch (no pretrained weights):
 
 - ✅ **Best Validation Accuracy**: 70.9%
 - 📉 **Best Validation Loss**: 1.5696
 - 📊 **Train Accuracy at Best Epoch**: ~70.8%
-- 🏁 **Epoch Reached**: **69** (early stopping triggered at epoch 69, best model saved at epoch 64)
+- 🏁 **Training Stopped at Epoch**: 69 (early stopping triggered at epoch 69, best model saved at epoch 64)
 
-Given the difficulty of the task (fine-grained, high-class-count, no transfer learning), I'm really happy with these results — and I see this as a strong baseline to build on further.
+Considering the complexity of the task — **fine-grained classification across 196 visually similar classes, with no external features or pretrained knowledge** — these results demonstrate strong model performance and robust generalization. This serves as a solid baseline for future enhancements.
 
 ---
 
 ## 🔍 Model Explainability
 
 To understand how the model makes predictions, I used **Grad-CAM** to visualize attention over image regions.  
-It was great to see that the model consistently focused on relevant parts of the cars like front grilles, headlights, or brand-specific details — indicating that it was learning meaningful patterns and not just memorizing.
+It was great to see that the model consistently focused on relevant parts of the cars like front grilles, headlights, or brand-specific details — indicating that it was attending to discriminative features and not just relying on spurious cues.
 
 ---
 
@@ -126,9 +126,10 @@ The notebook includes:
 
 ### ✅ Tips
 
-- A GPU is highly recommended for training (e.g., Colab Pro, or local CUDA setup)
-- You can tweak hyperparameters directly in the notebook (batch size, LR, MixUp, etc.)
-- At the end, you’ll see visual Grad-CAM outputs to better understand model decisions
+- A GPU is highly recommended for training (e.g., Colab Pro or local CUDA setup)
+- You can tweak hyperparameters directly in the notebook (batch size, learning rate, MixUp probability, etc.)
+- Grad-CAM visualizations are available at the end of the notebook — enable them to inspect where the model focuses for each prediction
+- Training logs and performance metrics (accuracy/loss) are plotted in real time to monitor convergence and overfitting
 
 ---
 
