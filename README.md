@@ -1,8 +1,8 @@
 
-# 🚘 Fine-Grained Vehicle Classification from Scratch (196 Classes)
+# 🚘 Fine Grained Vehicle Classification from Scratch (196 Classes)
 
 Hi,
-As part of my personal deep learning journey, I wanted to challenge myself by solving a real-world, fine-grained image classification task — using **only a custom-built CNN from scratch**, without any pretrained weights or transfer learning.
+As part of my personal deep learning journey, I wanted to challenge myself by solving a real-world, fine-grained image classification task - using **only a custom-built CNN from scratch**, without any pretrained weights or transfer learning.
 
 I used the [Stanford Cars Dataset](https://ai.stanford.edu/~jkrause/cars/car_dataset.html), which includes over 16,000 images across 196 car categories. Some of the differences between classes are incredibly subtle (like small changes in headlights or grilles), which makes this problem both technically challenging and interesting.
 
@@ -15,7 +15,7 @@ I used the [Stanford Cars Dataset](https://ai.stanford.edu/~jkrause/cars/car_dat
 - Deal with class imbalance and overfitting effectively
 - Learn and implement best practices in training, regularization, and model explainability
 
-I intentionally avoided using transfer learning because I wanted to fully understand what it takes to build and train a deep learning model from scratch — architecturally, mathematically, and practically.
+I intentionally avoided using transfer learning because I wanted to fully understand what it takes to build and train a deep learning model from scratch - architecturally, mathematically, and practically.
 
 ---
 
@@ -57,22 +57,22 @@ All results are from a custom CNN trained completely from scratch (no pretrained
 - 📊 **Train Accuracy at Best Epoch**: ~70.8%
 - 🏁 **Training Stopped at Epoch**: 69 (early stopping triggered at epoch 69, best model saved at epoch 64)
 
-Considering the complexity of the task — **fine-grained classification across 196 visually similar classes, with no external features or pretrained knowledge** — these results demonstrate strong model performance and robust generalization. This serves as a solid baseline for future enhancements.
+Considering the complexity of the task - **fine grained classification across 196 visually similar classes, with no external features or pretrained knowledge** - these results demonstrate strong model performance and robust generalization. This serves as a solid baseline for future enhancements.
 
 ---
 
 ## 🔍 Model Explainability
 
-To understand how the model makes predictions, I used **Grad-CAM** to visualize attention over image regions.  
-It was great to see that the model consistently focused on relevant parts of the cars like front grilles, headlights, or brand-specific details — indicating that it was attending to discriminative features and not just relying on spurious cues.
+To understand how the model makes predictions, I used **GradCAM** to visualize attention over image regions.  
+It was great to see that the model consistently focused on relevant parts of the cars like front grilles, headlights, or brand-specific details - indicating that it was attending to discriminative features and not just relying on spurious cues.
 
 ---
 
-## 🧪 How to Run
+## How to Run
 
 To reproduce the results or train the model yourself, follow these steps:
 
-### 1. 📦 Prepare the Dataset
+### 1. Prepare the Dataset
 
 Download and extract the dataset so the folder structure looks like this:
 
@@ -84,11 +84,10 @@ Download and extract the dataset so the folder structure looks like this:
 
 
 - The `train/` and `test/` folders should contain the raw car images, organized into subfolders by class (as expected by PyTorch's `ImageFolder`).
-- You do **not** need annotation files like `.mat` or `label.labels.txt` — the model is trained directly from the image folder structure.
-- No need for TFRecord — data is loaded efficiently using PyTorch's built-in tools.
+- You do **not** need annotation files like `.mat` or `label.labels.txt` - the model is trained directly from the image folder structure.
 
 
-### 2. 🧬 Clone the Repository
+### 2. Clone the Repository
 
 ```bash
 git clone https://github.com/Polpoliti/vehicle-classification-cnn.git
@@ -97,7 +96,7 @@ cd vehicle-classification-cnn
 
 ---
 
-### 3. ⚙️ Install Dependencies
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -107,7 +106,7 @@ pip install -r requirements.txt
 
 ---
 
-### 4. 📓 Run the Notebook
+### 4. Run the Notebook
 
 Launch Jupyter Notebook or your IDE, then open and run:
 
@@ -119,36 +118,36 @@ The notebook includes:
 - Data loading using PyTorch's ImageFolder structure (no `.mat` or `.txt` files required)
 - Custom CNN architecture with residual blocks (no pretrained weights)
 - Data augmentation, class balancing, and training logic
-- Accuracy tracking and Grad-CAM visualizations
+- Accuracy tracking and GradCAM visualizations
 
 
 ---
 
-### ✅ Tips
+### Tips
 
 - A GPU is highly recommended for training (e.g., Colab Pro or local CUDA setup)
 - You can tweak hyperparameters directly in the notebook (batch size, learning rate, MixUp probability, etc.)
-- Grad-CAM visualizations are available at the end of the notebook — enable them to inspect where the model focuses for each prediction
+- GradCAM visualizations are available at the end of the notebook - enable them to inspect where the model focuses for each prediction
 - Training logs and performance metrics (accuracy/loss) are plotted in real time to monitor convergence and overfitting
 
 ---
 
-## 🧪 Experimentation and Challenges
+## Experimentation and Challenges
 
-Throughout this project, I experimented with multiple training strategies and faced several real-world challenges:
+Throughout this project, I experimented with multiple training strategies and faced several real world challenges:
 
 - **Simple CNN architectures** without residuals failed to converge well on 196 classes. Accuracy plateaued early, even with heavy data augmentation.
 - Adding **residual connections** significantly improved learning stability and enabled deeper architectures to train effectively.
-- I compared **oversampling**, **weighted loss**, and **WeightedRandomSampler** — the sampler approach combined with **label smoothing** produced the most consistent results.
+- I compared **oversampling**, **weighted loss**, and **WeightedRandomSampler** - the sampler approach combined with **label smoothing** produced the most consistent results.
 - Without **MixUp**, the model tended to overfit after ~20 epochs. Integrating MixUp with probability 0.5 helped improve generalization.
 - Initially, I used a constant learning rate, but switching to **OneCycleLR** with cosine annealing led to smoother convergence and better final performance.
-- I observed overfitting around epoch 60–65, which is why I integrated **EarlyStopping** to capture the best checkpoint before performance dropped.
+- I observed overfitting around epoch 60-65, which is why I integrated **EarlyStopping** to capture the best checkpoint before performance dropped.
 
-These iterations taught me how small architectural tweaks and the right combination of training techniques can lead to substantial improvements in a deep learning workflow — especially when working without transfer learning.
+These iterations taught me how small architectural tweaks and the right combination of training techniques can lead to substantial improvements in a deep learning workflow - especially when working without transfer learning.
 
 ---
 
-## 📚 What I Learned
+## What I Learned
 
 This project gave me deep, hands-on experience in:
 
