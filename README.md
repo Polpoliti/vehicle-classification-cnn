@@ -2,13 +2,13 @@
 # 🚘 Fine Grained Vehicle Classification from Scratch (196 Classes)
 
 Hi,
-As part of my personal deep learning journey, I wanted to challenge myself by solving a real-world, fine-grained image classification task - using **only a custom-built CNN from scratch**, without any pretrained weights or transfer learning.
+As part of my personal deep learning journey, I wanted to challenge myself by solving a real world, fine grained image classification task - using **only a custom-built CNN from scratch**, without any pretrained weights or transfer learning.
 
 I used the [Stanford Cars Dataset](https://ai.stanford.edu/~jkrause/cars/car_dataset.html), which includes over 16,000 images across 196 car categories. Some of the differences between classes are incredibly subtle (like small changes in headlights or grilles), which makes this problem both technically challenging and interesting.
 
 ---
 
-## 🧠 What I Set Out to Do
+## What I Set Out to Do
 
 - Build an image classification model **from the ground up**
 - Handle **196 vehicle classes** with minimal visual differences
@@ -19,7 +19,7 @@ I intentionally avoided using transfer learning because I wanted to fully unders
 
 ---
 
-## 🏗️ What I Built
+## What I Built
 
 ### Model Architecture
 
@@ -52,19 +52,19 @@ To make the most of the data and avoid overfitting, I combined several technique
 
 All results are from a custom CNN trained completely from scratch (no pretrained weights):
 
-- ✅ **Best Validation Accuracy**: 70.9%
-- 📉 **Best Validation Loss**: 1.5696
-- 📊 **Train Accuracy at Best Epoch**: ~70.8%
-- 🏁 **Training Stopped at Epoch**: 69 (early stopping triggered at epoch 69, best model saved at epoch 64)
+-  **Best Validation Accuracy**: 70.9%
+-  **Best Validation Loss**: 1.5696
+-  **Train Accuracy at Best Epoch**: ~70.8%
+-  **Training Stopped at Epoch**: 69 (early stopping triggered at epoch 69, best model saved at epoch 64)
 
 Considering the complexity of the task - **fine grained classification across 196 visually similar classes, with no external features or pretrained knowledge** - these results demonstrate strong model performance and robust generalization. This serves as a solid baseline for future enhancements.
 
 ---
 
-## 🔍 Model Explainability
+##  Model Explainability
 
 To understand how the model makes predictions, I used **GradCAM** to visualize attention over image regions.  
-It was great to see that the model consistently focused on relevant parts of the cars like front grilles, headlights, or brand-specific details - indicating that it was attending to discriminative features and not just relying on spurious cues.
+It was great to see that the model consistently focused on relevant parts of the cars like front grilles, headlights, or brand specific details - indicating that it was attending to discriminative features and not just relying on spurious cues.
 
 ---
 
@@ -154,7 +154,7 @@ This project gave me deep, hands-on experience in:
 - Building and debugging CNN architectures
 - Tackling class imbalance with principled methods
 - Designing data augmentation strategies
-- Monitoring training behavior and using Grad-CAM for explainability
-- Balancing performance with generalization — not just chasing accuracy
+- Monitoring training behavior and using GradCAM for explainability
+- Balancing performance with generalization - not just chasing accuracy
 
 I gained a much stronger intuition around what works (and doesn’t) in deep learning, especially when building everything myself.
